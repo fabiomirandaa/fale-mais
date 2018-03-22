@@ -7,9 +7,10 @@ export class PlansService {
     constructor(private http: Http) { }
 
     getAllPlans() {
-        return this.http.get(`https://mysterious-reaches-49012.herokuapp.com/planos/`)
+        return this.http.get(`${process.env.DOMAIN_API}/planos/`)
             .subscribe(res => {
-                return res;
+                let response = res.json();
+                return response;
             }, err => {
                 return err;
             });

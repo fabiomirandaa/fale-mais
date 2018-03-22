@@ -8,9 +8,10 @@ export class DestinationsService {
     constructor(private http: Http) { }
 
     getAllDestinations() {
-        return this.http.get(`https://mysterious-reaches-49012.herokuapp.com/ddd/`)
+        return this.http.get(`${process.env.DOMAIN_API}/ddd/`)
             .subscribe(res => {
-                return res;
+                let response = res.json();
+                return response;
             }, err => {
                 return err;
             });
