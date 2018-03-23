@@ -9,11 +9,8 @@ export class DestinationsService {
 
     getAllDestinations() {
         return this.http.get(`${process.env.DOMAIN_API}/ddd/`)
-            .subscribe(res => {
-                let response = res.json();
-                return response;
-            }, err => {
-                return err;
+            .map(res => {
+                return res.json();
             });
 
     }
