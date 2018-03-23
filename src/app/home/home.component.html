@@ -10,17 +10,18 @@
 <section class="container">
   <div class="filter-panel panel">
     <div class="panel-heading">
-      <h1 class="title is-5">Filter Results</h1>
+      <h1 class="title is-5">Digite os dados abaixo:</h1>
     </div>
     <div class="panel-block">
-      <form action="" id="filter_form">
+      <form [formGroup]="calculatorFaleMaisForm">
         <div class="level">
           <div class="level-item">
             <div class="field">
               <label for="origem" class="label is-small">Origem</label>
               <p class="select is-small">
-                <select name="origem" id="origem">
-                  <option *ngFor="let plan of plans">{{plan.nome}}</option>
+                <select [formControl]="calculatorFaleMaisForm.controls['origem']" name="origem" id="origem">
+                  <option [selected]="true" value="">Selecione uma origem</option>
+                  <option *ngFor="let origem of origens" [ngValue]="origem">{{origem.ddd}}</option>
                 </select>
               </p>
             </div>
@@ -29,32 +30,62 @@
             <div class="field">
               <label for="destino" class="label is-small">destino</label>
               <p class="select is-small">
-                <select name="destino" id="destino">
-                  <option value="SGD">011</option>
+                <select [formControl]="calculatorFaleMaisForm.controls['destino']" name="destino" id="destino">
+                  <option [selected]="true" value="">Selecione um destino</option>
+                  <option *ngFor="let destination of destinations" [ngValue]="destination">{{destination.destino}}</option>
                 </select>
               </p>
             </div>
           </div>
           <div class="level-item">
             <div class="field">
-              <label for="rate_limit" class="label is-small">Minutos</label>
+              <label for="minutos" class="label is-small">Minutos</label>
               <p class="control is-small">
-                <input type="number" id="rate_limit" class="input is-small" name="rate_limit" placeholder="Rate Limie" />
+                <input type="number" [formControl]="calculatorFaleMaisForm.controls['minutos']" id="minutos" class="input is-small" name="minutos"
+                  placeholder="Digite os minutos" />
               </p>
             </div>
           </div>
           <div class="level-item">
             <div class="field">
-              <label for="origem" class="label is-small">Plano</label>
+              <label for="plano" class="label is-small">Plano</label>
               <p class="select is-small">
-                <select name="origem" id="origem">
-                  <option *ngFor="let plan of plans">{{plan.nome}}</option>
+                <select [formControl]="calculatorFaleMaisForm.controls['plano']" name="plano" id="plano">
+                  <option [selected]="true" value="">Selecione um plano</option>
+                  <option *ngFor="let plan of plans" [ngValue]="plan">{{plan.nome}}</option>
                 </select>
               </p>
             </div>
+          </div>
+          <div class="level-item pd-top">
+            <button (click)="calculateResult()" class="button is-primary" [disabled]="!calculatorFaleMaisForm.valid">Calcular</button>
           </div>
         </div>
       </form>
+    </div>
+  </div>
+
+  <div class="main-panel column">
+    <div class="property-information box">
+      <h1 class="title is-5">Resultados</h1>
+      <div class="media" *ngIf="showResults">
+        <div class="media-content">
+          <div class="content">
+            <p class="title is-6">Com o Fale Mais</p>
+            <p>
+              Uma ligação de {{result.localeOrigin}} para {{result.localeDestination}} por {{result.minutes}} minutos custa {{result.valuePlan
+              | currency:'BRL'}}.
+            </p>
+          </div>
+          <div class="content">
+            <p class="title is-6">Sem o Fale Mais</p>
+            <p>
+              Uma ligação de {{result.localeOrigin}} para {{result.localeDestination}} por {{result.minutes}} minutos custa {{result.valueNoPlan
+              | currency:'BRL'}}.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
