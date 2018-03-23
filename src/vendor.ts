@@ -12,3 +12,4 @@ import 'rxjs';
 // You can import js, ts, css, sass, ...
 
 import './main.scss';
+import 'bulma/bulma.sass';
