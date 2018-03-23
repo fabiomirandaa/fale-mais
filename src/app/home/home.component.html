@@ -1,3 +1,60 @@
-<div>
-  Conteúdo inicial aqui
-</div>
+<section class="hero is-primary">
+  <div class="hero-content">
+    <div class="container">
+      <h1 class="title is-1">Fale Mais</h1>
+      <h2 class="subtitle is 3">A calculadora para você mesmo ver os benefícios dos nossos planos</h2>
+    </div>
+  </div>
+</section>
+
+<section class="container">
+  <div class="filter-panel panel">
+    <div class="panel-heading">
+      <h1 class="title is-5">Filter Results</h1>
+    </div>
+    <div class="panel-block">
+      <form action="" id="filter_form">
+        <div class="level">
+          <div class="level-item">
+            <div class="field">
+              <label for="origem" class="label is-small">Origem</label>
+              <p class="select is-small">
+                <select name="origem" id="origem">
+                  <option *ngFor="let plan of plans">{{plan.nome}}</option>
+                </select>
+              </p>
+            </div>
+          </div>
+          <div class="level-item">
+            <div class="field">
+              <label for="destino" class="label is-small">destino</label>
+              <p class="select is-small">
+                <select name="destino" id="destino">
+                  <option value="SGD">011</option>
+                </select>
+              </p>
+            </div>
+          </div>
+          <div class="level-item">
+            <div class="field">
+              <label for="rate_limit" class="label is-small">Minutos</label>
+              <p class="control is-small">
+                <input type="number" id="rate_limit" class="input is-small" name="rate_limit" placeholder="Rate Limie" />
+              </p>
+            </div>
+          </div>
+          <div class="level-item">
+            <div class="field">
+              <label for="origem" class="label is-small">Plano</label>
+              <p class="select is-small">
+                <select name="origem" id="origem">
+                  <option *ngFor="let plan of plans">{{plan.nome}}</option>
+                </select>
+              </p>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

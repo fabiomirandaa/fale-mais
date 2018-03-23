@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlansService } from './../services/plans.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-home',
@@ -9,13 +10,19 @@ import { PlansService } from './../services/plans.service';
 
 export class HomeComponent implements OnInit {
 
+  plans: any;
   constructor(private plansService: PlansService) {
-    this.plansService.getAllPlans();
-  }
+    this.plansService.getAllPlans()
+      .subscribe(plans => {
+        this.plans = plans;
+      }, err => {
+
+      });
+
+}
 
   ngOnInit() {
-    
   }
 
-  
+
 }

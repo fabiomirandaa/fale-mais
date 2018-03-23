@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class PlansService {
@@ -8,11 +9,8 @@ export class PlansService {
 
     getAllPlans() {
         return this.http.get(`${process.env.DOMAIN_API}/planos/`)
-            .subscribe(res => {
-                let response = res.json();
-                return response;
-            }, err => {
-                return err;
+            .map(res => {
+                return res.json();
             });
 
     }
